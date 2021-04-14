@@ -95,7 +95,7 @@ python3 tools/export_model.py -c configs/rec/ch_ppocr_v1.1/rec_chinese_lite_trai
 
 下载方向分类模型：
 ```
-wget -P ./ch_lite/ https://paddleocr.bj.bcebos.com/20-09-22/cls/ch_ppocr_mobile-v1.1.cls_pre.tar && tar xf ./ch_lite/ch_ppocr_mobile-v1.1.cls_pre.tar -C ./ch_lite/
+wget -P ./ch_lite/ https://paddleocr.bj.bcebos.com/20-09-22/cls/ch_ppocr_mobile_v1.1_cls_train.tar && tar xf ./ch_lite/ch_ppocr_mobile_v1.1_cls_train.tar -C ./ch_lite/
 ```
 
 方向分类模型转inference模型与检测的方式相同，如下：
@@ -105,7 +105,7 @@ wget -P ./ch_lite/ https://paddleocr.bj.bcebos.com/20-09-22/cls/ch_ppocr_mobile-
 # Global.checkpoints参数设置待转换的训练模型地址，不用添加文件后缀.pdmodel，.pdopt或.pdparams。
 # Global.save_inference_dir参数设置转换的模型将保存的地址。
 
-python3 tools/export_model.py -c configs/cls/cls_mv3.yml -o Global.checkpoints=./ch_lite/cls_model/best_accuracy \
+python3 tools/export_model.py -c configs/cls/cls_mv3.yml -o Global.checkpoints=./ch_lite/ch_ppocr_mobile_v1.1_cls_train/best_accuracy \
         Global.save_inference_dir=./inference/cls/
 ```
 
@@ -325,7 +325,7 @@ python3 tools/infer/predict_rec.py --image_dir="./doc/imgs_words_en/word_336.png
 需要通过 `--vis_font_path` 指定可视化的字体路径，`doc/` 路径下有默认提供的小语种字体，例如韩文识别：
 
 ```
-python3 tools/infer/predict_rec.py --image_dir="./doc/imgs_words/korean/1.jpg" --rec_model_dir="./your inference model" --rec_char_type="korean" --rec_char_dict_path="ppocr/utils/korean_dict.txt" --vis_font_path="doc/korean.ttf"
+python3 tools/infer/predict_rec.py --image_dir="./doc/imgs_words/korean/1.jpg" --rec_model_dir="./your inference model" --rec_char_type="korean" --rec_char_dict_path="ppocr/utils/dict/korean_dict.txt" --vis_font_path="doc/korean.ttf"
 ```
 ![](../imgs_words/korean/1.jpg)
 
